@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      
+    <link href="https://fonts.googleapis.com/css?family=Muli|Nunito|Rubik" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <style>
+          body{
+  border:0px dashed green;
+  min-height:500px;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  margin:0;
+  padding:0;
+  font-family:"Rubik";
+  /*headers*/
+  --responsive-font:calc(1vw + 18px);
+  --small-responsive-font:calc(1vw + 10px);
+  --smaller-responsive-font:calc(1vw + 1px);
+  /*for detail text*/
+  --detail-responsive-font:calc(0.8vw + 7px);
+}
+h1{font-size:var(--responsive-font);}
+h2{font-size:var(--small-responsive-font);}
+p{font-size:var(--detail-responsive-font);}
+
+/*-------Nav--------*/
+nav{
+  position:absolute;
+  color:gray;
+  top:0;
+  left:0;
+  width:60px;
+  height:100%;
+  min-height:700px;
+  background:#450037;
+  transition:0.3s, padding 0.5s;
+  z-index:10;
+  padding:0px;
+  overflow:hidden;
+}
+nav .material-icons{color:lightblue;transition:0.2s;}
+nav .profileContainer{
+  margin-top:10px;
+  height:70px;
+  width:100%;
+  border:0px solid black;
+}
+#profilePic{
+  padding:0;
+  width:100%;
+  height:30px;
+  text-align:center;
+  position:relative;
+  border:0px solid yellow;
+  font-size:40px;
+  transition:0.35s;
+  color:white;
+}
+#profilePic:hover{
+  color:purple;
+  cursor:pointer;
+}
+nav:hover{width:140px;box-shadow:0px 0px 20px 0px black;}
+nav:hover #profilePic{font-size:55px;}
+
+/*nav:hover p{font-size:17px;}*/
+nav:hover .navLinks li{
+  /*font-size: 18px;*/
+  
+  width:100%;
+}
+nav:hover .shrinking{
+  width:70%;
+  font-size:17px;
+  overflow:hidden;
+  opacity:1;
+}
+nav:hover .iconContainer{
+  width:30%;
+  
+}
+nav .shrinking{
+  padding:10px;
+  width:0px;
+  height:100%;
+  opacity:0;
+  transition: width 0.1s, opacity 0.5s, 0.2s;
+  border:0px dashed orange;
+  color:white;
+}
+.iconContainer{
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  text-align:center;
+  height:100%;
+  border:0px solid green;
+  transition:0.2s;
+}
+nav p{
+  font-size:15px;
+  text-align:center;
+  transition:0.2s;
+  position:relative;
+}
+nav li{
+  overflow:hidden;
+  position:absolute;
+  width:100%;
+  /**/
+  height:40px;
+  list-style-type: none;
+  cursor:pointer;
+  border:0px solid red;
+  padding:0px;
+  transition:0.35s;
+  font-size:10px;
+}
+.navLinks li:hover .shrinking, .navLinks li:hover .material-icons{
+  color:purple;
+}
+/*-------general elements--------*/
+.gridBlock{
+  height:100%;
+  width:100%;
+  background:transparent;
+}
+.row{
+  position:relative;
+  width:100%;
+  height:350px;
+  border:0px solid blue;
+}
+.title{
+  text-align:center;
+}
+
+
+
+/*---------------*/
+.mainCanvas{
+  z-index:1;
+  height:100%;
+  max-height:700px;
+  min-height:700px;
+  width:calc(100% - 60px);
+  margin-left:60px;
+  border-left:2px solid green;
+  background:white;
+  overflow-y:scroll;
+}
+.Grid{
+  position:relative;
+  display:grid;
+  width:80%;
+  margin-left:10%;
+  border:1px solid lightgreen;
+}
+.Grid .gridBlock{
+  height:100%;
+  width:100%;
+  background:linear-gradient(gray,lightgray);
+}
+#job_assessment{
+  height:200px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+#graphs{  
+  height:300px;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-color:blue;
+}
+#scrollLabels{
+  position:relative;
+  height:50px;
+  width:80%;
+  margin-left:10%;
+  margin-top:70px;
+  overflow:hidden;
+}
+.scrollContainer{
+  position:relative;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  height:420px;
+  width:80%;
+  margin-left:10%;
+  border:0px solid orange;
+  border-radius:5px;
+  box-shadow:4px 4px 10px 0px gray;
+}
+.scrollContainer .scrollItem{
+  height:50px;
+  width:100%;
+  position:relative;
+  padding-left:00px;
+  background:linear-gradient(white,lightgray);
+  transition:0.25s,color 0.0s;
+  color:rgba(0,0,0,0.7);
+  overflow:hidden;
+}
+.scrollItem:hover{
+  box-shadow:inset 2px 2px 10px 0px gray; 
+  cursor:pointer;
+}
+.scrollItem:active{
+  color:blue;
+}
+.scrollText{
+  float:left;
+  height:100%;
+  width:17%;
+  border:0px solid lightblue;
+  padding-top:15px;
+  padding-left:10px;
+  font-size:var(--smaller-responsive-font);
+}
+.text{
+  height:100%;
+  width:17%;
+  display:flex;
+  align-items:center;
+  padding-top:10px;
+  
+  float:left;
+  position:relative;
+  border:1px solid lightblue;
+  padding:0;
+  margin:0;
+  font-size:var(--smaller-responsive-font);
+}
+.label{
+  height:100%;
+  width:17%;
+  float:left;
+  padding-top:15px;
+  padding-left:10px;
+  /*text-align:center;*/
+  font-size:var(--detail-responsive-font);
+  border:0px solid blue;
+}
+.indicator{
+  height:100%;
+  width:15%;
+  position:relative;
+  float:right;
+}
+
+/*footershit*/
+footer{
+  position:relative;
+  height:140px;
+  width:100%;
+  background:lightgray;
+  box-shadow:0px 0px 10px 0px green;
+  z-index:3;
+}
+.footerGrid{
+  display:grid;
+  grid-template:1fr/1fr 1fr 1fr 1fr;
+  height:120px;
+  width:70%;
+  margin-left:15%;
+  border:1px solid gray;
+  line-height:2;
+}
+          #map {
+        height: 100%;
+      }
+          
+ #deaths.span{
+     
+     transition: border background-color 2s;
+     
+          }
+ #cases.span{
+     
+     transition: border background-color 2s;
+     
+          }
+#deaths.span:hover{
+     cursor:pointer;
+     background-color:red;
+     border:none;
+          }
+#cases.span:hover{
+     cursor:pointer;
+   background-color:blue;
+    border:none;
+    
+          }
+      </style>
+  </head>
+   
+  <body>
+    
+
+    <nav class='navBar' id="navBar">
+      <div class='profileContainer'>
+        <div>
+          <i class="material-icons" id="profilePic" style=''>account_circle</i>     
+        </div>
+        <p style='border:0px solid red;padding:0;margin-top:-2px;'>Northwestern</p>
+      </div>
+      
+      <ul class='navLinks'>
+        <li style='top:20%;left:0;'>
+          <div class='shrinking'>Map</div>
+          <div class='iconContainer'>
+            <i class="material-icons" style='font-size:30px;padding:5px;'>assignment</i>     
+          </div>
+        </li>
+       
+        <li style='top:40%;left:0;'>
+          <div class='shrinking'>FAQ</div>
+          <div class='iconContainer'>
+            <i class="material-icons" style='font-size:30px;padding:5px;'>settings</i>     
+          </div>
+        </li>
+      </ul>
+    </nav>
+   
+    <div class='mainCanvas'>
+      <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+ 
+  <body onload='loadMap()' id='body'>
+    <div id="map" ></div>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoscrKoGi4KLRAbAyXrx8hYsDzcuoWCcs"></script>
+    <script>
+      var map;
+       
+       
+//         console.log(color);
+   
+         
+          
+          function loadMap(){
+              
+              
+              var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 40.75, lng: -74.00}
+        });
+              document.getElementById("map").style.display = "none";
+              var radiosS = document.getElementsByName('size');
+             var radiosC = document.getElementsByName('colors');
+
+            sizesArg = 'black';
+            colorArg = 'cases';
+              for (var x = 0, length2 = radiosS.length; x < length2; x++) {
+                if (radiosS[x].checked) {
+
+                sizesArg = radiosS[x].value;
+
+
+
+              }
+            }            
+
+
+            for (var i = 0, length = radiosC.length; i < length; i++) {
+                if (radiosC[i].checked) {
+
+               colorArg = radiosC[i].value;
+
+
+              }
+            }
+             
+//             colorArg = document.getElementById("btn1").value;
+//             sizesArg = document.getElementById("btn2").value;
+          {%for i in range(0, length)%} 
+        lat = {{ stateArr[i]['lat'] }};
+        lng = {{ stateArr[i]['long'] }};
+        if(colorArg == 'cases'){
+            color = '{{ colors[i] }}';
+        }else{
+            color = '{{ colorsD[i] }}';
+        }
+        
+        loc = {lat: lat, lng: lng}  
+        if(sizesArg == 'black'){
+            size = {{sizes[i]}};
+        }else if(sizesArg =='hispanic'){
+            size = {{sizesH[i]}};
+        }else if(sizesArg =='asian'){
+            size = {{sizesA[i]}};
+        }else if(sizesArg =='nativeAmerican'){
+            size = {{sizesNA[i]}};
+        }else if(sizesArg =='deaths2'){
+            size = {{sizesD[i]}};
+        }else if(sizesArg =='cases2'){
+            size = {{sizesC[i]}};
+        }else if(sizesArg =='time'){
+            size = {{sizesT[i]}};
+        }
+        
+        
+ 
+        var Star = {
+          path: google.maps.SymbolPath.CIRCLE,
+//           fillColor: color ,
+         
+//           scale: size,
+//           strokeColor:color,
+//           strokeWeight: 2,
+            fillColor: color,
+          fillOpacity: 0.8,
+          scale: size,
+          strokeColor: color,
+          strokeWeight: size
+        };
+
+        var marker = new google.maps.Marker({
+          position: loc,
+          icon: Star,
+          map: map
+        });
+//          name = {{ stateArr[i]['name'] }}
+//          cases = {{ stateArr[i]['confirmed_cases'] }}
+         contentString = "<dl><dt>Name</dt><dd>{{stateArr[i]['name']}}</dd><dt>Number of Confirmed Cases</dt><dd>{{stateArr[i]['confirmed_cases']}}</dd><br><dt>Number of Confirmed Deaths</dt><dd>{{stateArr[i]['confirmed_deaths']}}</dd> <br><dt>Avg time spent at home</dt><dd>{{stateArr[i]['Avg Time spent home']}} hours</dd><br> <dt>Avg distance traveled from home</dt><dd>{{stateArr[i]['distance_traveled_from_home']}}</dd> <br><dt>Hispanic population</dt><dd>{{stateArr[i]['hispanicPop%']}}</dd> <br><dt>Black or African American population</dt><dd>{{stateArr[i]['blackPop%']}}</dd><br><dt>Asian  population</dt><dd>{{stateArr[i]['asianPop%']}}</dd> <br><dt>Native American population</dt><dd>{{stateArr[i]['NativeAmericanPop%']}}</dd> <br> <dt>% increase in cases</dt><dd>{{stateArr[i]['% change in cases']}}%</dd></dl>" ;
+
+       infowindow = new google.maps.InfoWindow()
+      google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){ 
+    return function() {
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
+    };
+})(marker,contentString,infowindow));  
+        
+//       marker.addListener('click', function() {
+//     infowindow.open(map, marker);
+//   });
+        
+        
+        
+        
+        
+        
+        
+        {%endfor%} 
+     
+         document.getElementById("map").style.display = "block";
+          }
+        
+         
+      
+    
+      
+    </script>
+      <style>
+          #deather{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #deather:hover{
+              background-color:rgb(253,51,0,.8);
+              color:white;
+              border-color:rgb(255,0,0);
+          }
+          #caser{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #caser:hover{
+              background-color:rgb(82,140,168,.8);
+              color:white;
+              border-color:rgb(0,93,125);
+          }
+          
+          #blacks{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #blacks:hover{
+              background-color:rgb(116,87,148,.8);
+              color:white;
+              border-color:rgb(34,19,51);
+          }
+         
+           #asians{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #asians:hover{
+              background-color:rgb(5,162,44,.8);
+              color:white;
+              border-color:rgb(31,114,20);
+          }
+          
+          
+          
+           #hispanics{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #hispanics:hover{
+              background-color:rgb(229,153,19,.8);
+              color:white;
+              border-color:rgb(250,215,45);
+          }
+          
+      
+          
+           #nativeAmericans{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #nativeAmericans:hover{
+              background-color:rgb(187,187,187,.8);
+              color:white;
+              border-color:rgb(170,170,170);
+          }
+          
+          
+          
+          #deather2{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #deather2:hover{
+              background-color:rgb(176,53,53,.8);
+              color:white;
+              border-color:rgb(189,74,74);
+          }
+          
+          
+          
+          #caser2{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #caser2:hover{
+              background-color:rgb(188,129,172,.8);
+              color:white;
+              border-color:rgb(188,129,172);
+          }
+          
+          
+          
+          #timer{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #timer:hover{
+              background-color:rgb(161,92,54,.8);
+              color:white;
+              border-color:rgb(193,114,61);
+          }
+          
+          .subButton{
+              border:1px solid black;
+              border-radius:5px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+              
+          }
+          
+          .subButton:hover{
+              background-color:rgb(44,47,51,.8);
+              color:white;
+              border-color:rgb(44,47,51);
+          }
+      </style>
+      <script>
+          function sizes(arg){
+              //switch logic for colors
+             switch (arg) {
+                          case 'deather':
+                              document.getElementById('deather').style.backgroundColor = 'rgb(253,51,0,.8)';
+                              document.getElementById('deather').style.color = 'white';
+                              document.getElementById('deather').style.borderColor = 'rgb(255,0,0)';
+                              document.getElementById('caser').style.backgroundColor = 'white';
+                              document.getElementById('caser').style.color = 'black';
+                              document.getElementById('caser').style.borderColor = 'black';
+                            break;
+                          case 'caser':
+                              document.getElementById('deather').style.backgroundColor = 'white';
+                              document.getElementById('deather').style.color = 'black';
+                              document.getElementById('deather').style.borderColor = 'black';
+                              document.getElementById('caser').style.backgroundColor = 'rgb(82,140,168,.8)';
+                              document.getElementById('caser').style.color = 'white';
+                              document.getElementById('caser').style.borderColor = 'rgb(0,93,125)';
+                            break;
+                          case 'blacks':
+                              document.getElementById('blacks').style.backgroundColor = 'rgb(116,87,148,.8)';
+                              document.getElementById('blacks').style.color = 'white';
+                              document.getElementById('blacks').style.borderColor = 'rgb(34,19,51)';
+                              //end blacks
+
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                             
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                              
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                              
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                            break;
+                          case 'asians':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'rgb(5,162,44,.8)';
+                              document.getElementById('asians').style.color = 'white';
+                              document.getElementById('asians').style.borderColor = 'rgb(31,114,20)';
+                              //asians
+
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                             
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                              
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                              
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                            break;
+                          case 'hispanics':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'rgb(229,153,19,.8)';
+                              document.getElementById('hispanics').style.color = 'white';
+                              document.getElementById('hispanics').style.borderColor = 'rgb(250,215,45)';
+                              //hispanics
+
+                             
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                              
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                              
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                              
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                            break;
+                          case 'nativeAmericans':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'rgb(187,187,187,.8)';
+                              document.getElementById('nativeAmericans').style.color = 'white';
+                              document.getElementById('nativeAmericans').style.borderColor = 'rgb(170,170,170)';
+                              //nativeAmericans
+
+                             
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                              
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                              
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                            break;
+                          case 'deather2':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                              
+                              
+                              document.getElementById('deather2').style.backgroundColor = 'rgb(176,53,53,.8)';
+                              document.getElementById('deather2').style.color = 'white';
+                              document.getElementById('deather2').style.borderColor = 'rgb(189,74,74)';
+                              //deather2
+
+                              
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                             
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                              break
+                     case 'caser2':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                              
+                              
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                             
+                              document.getElementById('caser2').style.backgroundColor = 'rgb(188,129,172,.8)';
+                              document.getElementById('caser2').style.color = 'white';
+                              document.getElementById('caser2').style.borderColor = 'rgb(188,129,172)';
+                              //caser2
+
+                              
+                              document.getElementById('timer').style.backgroundColor = 'white';
+                              document.getElementById('timer').style.color = 'black';
+                              document.getElementById('timer').style.borderColor = 'black';
+                              //timer
+                              break
+                     case 'timer':
+                              document.getElementById('blacks').style.backgroundColor = 'white';
+                              document.getElementById('blacks').style.color = 'black';
+                              document.getElementById('blacks').style.borderColor = 'black';
+                              //end blacks
+
+                              
+                              document.getElementById('asians').style.backgroundColor = 'white';
+                              document.getElementById('asians').style.color = 'black';
+                              document.getElementById('asians').style.borderColor = 'black';
+                              //asians
+
+                              
+                              
+                              document.getElementById('hispanics').style.backgroundColor = 'white';
+                              document.getElementById('hispanics').style.color = 'black';
+                              document.getElementById('hispanics').style.borderColor = 'black';
+                              //hispanics
+
+                              
+                              
+                              document.getElementById('nativeAmericans').style.backgroundColor = 'white';
+                              document.getElementById('nativeAmericans').style.color = 'black';
+                              document.getElementById('nativeAmericans').style.borderColor = 'black';
+                              //nativeAmericans
+
+                              
+                              
+                              document.getElementById('deather2').style.backgroundColor = 'white';
+                              document.getElementById('deather2').style.color = 'black';
+                              document.getElementById('deather2').style.borderColor = 'black';
+                              //deather2
+
+                             
+                              document.getElementById('caser2').style.backgroundColor = 'white';
+                              document.getElementById('caser2').style.color = 'black';
+                              document.getElementById('caser2').style.borderColor = 'black';
+                              //caser2
+
+                                           
+                              document.getElementById('timer').style.backgroundColor = 'rgb(161,92,54,.8)';
+                              document.getElementById('timer').style.color = 'white';
+                              document.getElementById('timer').style.borderColor = 'rgb(193,114,61)';
+                              //timer
+                              break
+                        }
+          }
+           
+        
+          
+      </script>
+<!--             background-color:rgb(82,140,168,.8);
+              color:white;
+              border-color:rgb(0,93,125); -->
+      <div style="text-align:center;margin:auto">
+          
+      <span > Map Color Filter: </span>
+      <br><br>
+    <label for="deaths" onclick="sizes('deather')" style="padding-right:1rem">
+         <input type="radio" id='deaths'  name="colors" value="deaths" hidden>
+              <span id='deather'   >% change in Deaths</span>
+        </label>   
+     
+        <label for="cases"  onclick="sizes('caser')">
+  <input type="radio"  id="cases" name="colors" value="cases" hidden>
+       <span id='caser'   > % change in Cases </span>
+        </label> 
+     
+     <br>
+  <br>
+        <br>
+      
+      
+       Map Size Filter:
+      <br><br>
+    <label for="black" onclick="sizes('blacks')" style="padding-right:1rem">
+         <input type="radio" id='black'  name="size" value="black" hidden>
+              <span id='blacks'   >Black Population</span>
+        </label>   
+      
+        <label for="hispanic" onclick="sizes('hispanics')" style="padding-right:1rem">
+  <input type="radio"  id="hispanic" name="size" value="hispanic" hidden>
+       <span id='hispanics'   > Hispanic Population </span>
+        </label> 
+      
+        <label for="asian" onclick="sizes('asians')" style="padding-right:1rem">
+  <input type="radio"  id="asian" name="size" value="asian" hidden>
+       <span id='asians'   > Asian Population </span>
+        </label> 
+      
+     
+        <label for="nativeAmerican" onclick="sizes('nativeAmericans')" style="padding-right:1rem">
+  <input type="radio"  id="nativeAmerican" name="size" value="nativeAmerican" hidden>
+       <span id='nativeAmericans'   > Native American Population </span>
+        </label> 
+      
+     
+        <label for="deaths2" onclick="sizes('deather2')" style="padding-right:1rem">
+  <input type="radio"  id="deaths2" name="size" value="deaths2" hidden>
+       <span id='deather2'   > Current Deaths </span>
+        </label> 
+      
+    
+        <label for="cases2" onclick="sizes('caser2')" style="padding-right:1rem">
+  <input type="radio"  id="cases2" name="size" value="cases2" hidden>
+       <span id='caser2'   > Current Cases </span>
+        </label> 
+      
+        <label for="time" onclick="sizes('timer')">
+  <input type="radio"  id="time" name="size" value="time" hidden>
+       <span id='timer'   > Avg Time Spent Home </span>
+        </label> 
+      
+     
+     <br>
+  <br>
+        <br>
+      
+       <span onclick="loadMap()" class="subButton">Submit</span>
+          
+      </div>
+  </body>
+          
+        
+        
+ 
+ 
+  
+        
+       
+    </div><!--main canvas end loadMap()-->
+     
+      
+      
+    <!--foot-->
+    
+  
+  </body>
+</html>
+    
+
