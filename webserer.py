@@ -6,7 +6,8 @@ from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 
 app = Flask(__name__)   
-GoogleMaps(app, key="AIzaSyBoscrKoGi4KLRAbAyXrx8hYsDzcuoWCcs")
+apiKey = 'apiKey'
+GoogleMaps(app, key=apiKey)
 def loadData(ls):
     dfList = []
     for x in ls:
