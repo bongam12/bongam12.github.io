@@ -329,6 +329,8 @@ footer{
        * element that contains the map. */
       #map {
         height: 100%;
+          display:none;
+          
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -336,9 +338,38 @@ footer{
         margin: 0;
         padding: 0;
       }
+      /* loading sign */
+          
+          .loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid purple;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+              margin-top:30vh;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+              display:block;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+          /* end loading sign */
+          
+          
     </style>
  
   <body onload='loadMap()' id='body'>
+      <div class="loader"></div>
     <div id="map" ></div>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoscrKoGi4KLRAbAyXrx8hYsDzcuoWCcs"></script>
@@ -351,13 +382,13 @@ footer{
          
           
           function loadMap(){
-              
-              
+              document.getElementById("map").style.display = "none";
+              document.getElementById("loader").style.display = 'block';
               var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: {lat: 40.75, lng: -74.00}
         });
-              document.getElementById("map").style.display = "none";
+              
               var radiosS = document.getElementsByName('size');
              var radiosC = document.getElementsByName('colors');
 
@@ -455,7 +486,7 @@ footer{
         
         
         {%endfor%} 
-     
+     document.getElementById("loader").style.display = 'none';
          document.getElementById("map").style.display = "block";
           }
         
