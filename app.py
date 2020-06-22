@@ -4,7 +4,7 @@ import pandas as pd
 import gmaps
 
 
-app = Flask(__name__)   
+app = Flask(__name__)
 apiKey = 'apiKey'
 GoogleMaps(app, key=apiKey)
 def loadData(ls):
@@ -25,11 +25,11 @@ def addChanges(states,changed,dfList):
     return newdfLis
 
 
-def createGeoSpatial(ls): 
+def createGeoSpatial(ls):
     stateArr = []
     for x in ls:
         for index, row in x.iterrows():
-        
+
             #print(row['countyName'], row['Lat'], row['Long_'])
             stateArr.append({'HawaiianPop%':(row['NA_MALE']+row['NA_FEMALE'])/row['TOT_POP'] *100,'NativeAmericanPop%':(row['IA_MALE']+row['IA_FEMALE'])/row['TOT_POP']*100,'asianPop%':(row['AA_MALE']+row['AA_FEMALE'])/row['TOT_POP']*100,'hispanicPop%':(row['H_MALE']+row['H_FEMALE'])/row['TOT_POP']*100,'whitePop%':(row['WA_MALE']+row['WA_FEMALE'])/row['TOT_POP']*100,'blackPop%':(row['BA_MALE']+row['BA_FEMALE'])/row['TOT_POP']*100,'% change in deaths': row['% change in deaths'],'Current Deaths':row['Current_Deaths'],'name': row['countyName'], 'location': (row['Lat'], row['Long_']),'lat': row['Lat'],'long':  row['Long_'],'% change in cases':(round(row['% change in cases'],2) * 100),'Qty change in cases':int(round(row['change in cases'])), 'confirmed_cases': int(round(row['Current_Confirmed'])), 'confirmed_deaths': int(round(row['Deaths'])),'distance_traveled_from_home':int(round(row['distance_traveled_from_home'])),'Black or African American alone male population':int(round(row['BA_MALE'])),'White alone male population':int(round(row['WA_MALE'])),'Avg Time spent home':round(int(round(row['median_home_dwell_time']))/60)})
     return stateArr
@@ -44,19 +44,19 @@ def setColorArgs(states,arg):
 
                 colors.append('rgba(171,243,0, 0.7)')
             elif (x[arg]) < 25 and (x[arg] ) > 0:
-                   
+
                 colors.append('rgba(252,255,0, 0.9)')
             elif (x[arg]) < 50 and (x[arg]) > 25:
-                
+
                 colors.append('rgba(255,189,0, 0.7)')
             elif (x[arg]) < 75 and (x[arg]) > 50:
-                   
+
                 colors.append('rgba(255,119,0, 0.8)')
             else:
                 colors.append('rgba(200, 0, 0, 0.9)')
-       
+
         else:
-            
+
             if int(x[arg] * .02) == 0:
 
                 colors.append('rgba(0,0,255, 0.7)')
@@ -95,8 +95,8 @@ def createMap(states,originCoord,colors,arg):
     """
     plant_info = [info_box_template.format(**plant) for plant in states]
     marker_layer = gmaps.symbol_layer(plant_locations, info_box_content=plant_info,fill_color=colors,stroke_color=colors)
-    
-    
+
+
     count = 0
     for x in states:
         if arg == 'Current Deaths':
@@ -119,7 +119,7 @@ def createMap(states,originCoord,colors,arg):
                 marker_layer.markers[count].scale = 4
             else:
                 marker_layer.markers[count].scale = 6
-        else:   
+        else:
             if int(x[arg] * .0007) == 0:
                 marker_layer.markers[count].scale = 2
             else:
@@ -133,12 +133,12 @@ def createMap(states,originCoord,colors,arg):
         'padding': '1px'
     }
     fig = gmaps.figure(center=originCoord, zoom_level=8,layout=figure_layout)
-    
+
     fig.add_layer(marker_layer)
     return fig
-    
+
 def size_states(states,arg):
-   
+
     sizes = []
     for x in states:
         if arg == 'confirmed_deaths':
@@ -153,46 +153,46 @@ def size_states(states,arg):
             else:
                 #over 1000 deaths
                 sizes.append(int(x[arg] * .001))
-        
+
         elif arg == 'asianPop%':
             if int(x[arg]/2) < 1:
                 sizes.append(2)
             else:
-               
-                sizes.append(int(x[arg] / 2))  
+
+                sizes.append(int(x[arg] / 2))
         elif arg == 'NativeAmericanPop%':
             if int(x[arg]/5) < 1:
                 sizes.append(2)
             else:
-               
-                sizes.append(int(x[arg] / 5))  
-                
+
+                sizes.append(int(x[arg] / 5))
+
         elif arg == 'blackPop%' or arg == 'whitePop%' or arg == 'hispanicPop%' :
             if int(x[arg]/10) < 1:
                 sizes.append(2)
             else:
-               
+
                 sizes.append(int(x[arg] / 10))
         elif arg == 'Avg Time spent home':
             if int(x[arg]) > 10:
                 sizes.append(2)
             elif int(x[arg]) < 10 and int(x[arg]) > 6:
-                
+
                 sizes.append(40/int(x[arg]))
             else:
                 sizes.append(50/int(x[arg]))
-        else:   
+        else:
             if int(x[arg] * .0007) == 0:
                 sizes.append(2)
             else:
                 sizes.append(int(x[arg] * .0007))
 
-     
+
     return sizes
 @app.route("/")
-def home():         
+def home():
     gmaps.configure(api_key='AIzaSyBoscrKoGi4KLRAbAyXrx8hYsDzcuoWCcs')
-    
+
     dataList = ['NorthCarolinaApril.csv','NorthDakotaApril.csv','AlabamaApril.csv','AlaskaApril.csv','ArizonaApril.csv','ArkansasApril.csv',
             'CaliforniaApril.csv','ColoradoApril.csv','ConnecticutApril.csv','DelawareApril.csv','FloridaApril.csv','GeorgiaApril.csv',
             'HawaiiApril.csv','IdahoApril.csv','IllinoisApril.csv','IndianaApril.csv','IowaApril.csv','KansasApril.csv','WyomingApril.csv',
@@ -218,8 +218,8 @@ def home():
 
     val['% change in deaths'] = (val['% change in deaths'].astype('float'))
     val['Current_Deaths'] = (val['Current_Deaths'].astype('int'))
-    
-    # add changes 
+
+    # add changes
     states = ['North Carolina','North Dakota','Alabama','Alaska','Arizona','Arkansas',
             'California','Colorado','Connecticut','Delaware','Florida','Georgia',
             'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Wyoming',
@@ -229,10 +229,10 @@ def home():
             'Louisiana','Kentucky','Maine','Maryland','Massachusetts','Michigan',
             'Minnesota','Missouri','Montana','Nebraska','Nevada','New Mexico']
     newdfLis = addChanges(states,val,dfList)
-    
+
     #create geospatial array
     stateArr = createGeoSpatial(newdfLis)
-    
+
     #set colors
     sizes = size_states(stateArr,'blackPop%')
     sizesT = size_states(stateArr,'Avg Time spent home')
@@ -241,15 +241,16 @@ def home():
     sizesNA = size_states(stateArr,'NativeAmericanPop%')
     sizesD = size_states(stateArr,'confirmed_deaths')
     sizesC = size_states(stateArr,'confirmed_cases')
-    
+
     colors = setColorArgs(stateArr,'% change in cases')
     colorsD = setColorArgs(stateArr,'% change in deaths')
 #     mapFigure = createMap(stateArr, (40.75, -74.00),colors,'blackPop%')
-    
-     
+
+
     return render_template('index.html', stateArr = stateArr,length = len(stateArr), colors = colors,sizes = sizes,sizesH = sizesH,sizesT = sizesT,sizesA = sizesA,sizesD = sizesD,sizesC = sizesC,sizesNA = sizesNA,colorsD = colorsD)
 
-            
-            
 
-app.run(host='0.0.0.0', port=5000, debug=True)
+
+if __name__ == '__main__':
+    app.run_server()
+# app.run(host='0.0.0.0', port=5000, debug=True)
