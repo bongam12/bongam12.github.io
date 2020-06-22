@@ -11,7 +11,7 @@ GoogleMaps(app, key=apiKey)
 def loadData(ls):
     dfList = []
     for x in ls:
-        dfList.append(pd.read_csv(x))
+        dfList.append(pd.read_csv('data/'+x))
     return dfList
 
 
@@ -204,7 +204,7 @@ def home():
             'MinnesotaApril.csv','MissouriApril.csv','MontanaApril.csv','NebraskaApril.csv','NevadaApril.csv','New MexicoApril.csv']
 
     dfList = loadData(dataList)
-    changePerc = pd.read_csv('change%list.csv')
+    changePerc = pd.read_csv('data/change%list.csv')
     changePerc['change in cases'] = changePerc['change in cases'].map(lambda x: x.lstrip('[').rstrip(']'))
     changePerc['% change in cases'] = changePerc['% change in cases'].map(lambda x: x.lstrip('[').rstrip(']'))
     changePerc['Current_Confirmed'] = changePerc['Current_Confirmed'].map(lambda x: x.lstrip('[').rstrip(']'))
