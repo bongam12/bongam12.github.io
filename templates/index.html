@@ -144,8 +144,7 @@ nav li{
 .mainCanvas{
   z-index:1;
   height:100%;
-  max-height:700px;
-  min-height:700px;
+  
   width:calc(100% - 60px);
   margin-left:60px;
   border-left:2px solid green;
@@ -292,10 +291,15 @@ footer{
     border:none;
     
           }
+          html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
       </style>
   </head>
    
-  <body>
+  <body onload='loadMap()' id='body'>
     
 
     <nav class='navBar' id="navBar">
@@ -328,16 +332,12 @@ footer{
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
-          display:none;
+        height: 80%;
+        
           
       }
       /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+      
       /* loading sign */
           
           .loader {
@@ -350,7 +350,7 @@ footer{
               margin-top:30vh;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-              display:block;
+             
 }
 
 /* Safari */
@@ -368,9 +368,10 @@ footer{
           
     </style>
  
-  <body onload='loadMap()' id='body'>
-      <div class="loader"></div>
-    <div id="map" ></div>
+
+<!--       <div class="loader"></div> -->
+    <div id="map" >Loading...</div>
+     
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoscrKoGi4KLRAbAyXrx8hYsDzcuoWCcs"></script>
     <script>
@@ -382,8 +383,8 @@ footer{
          
           
           function loadMap(){
-              document.getElementById("map").style.display = "none";
-              document.getElementById("loader").style.display = 'block';
+//               document.getElementById("map").style.display = "none";
+//               document.getElementById("loader").style.display = 'none';
               var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: {lat: 40.75, lng: -74.00}
@@ -1017,23 +1018,14 @@ footer{
         
           
       </script>
-<!--             background-color:rgb(82,140,168,.8);
-              color:white;
-              border-color:rgb(0,93,125); -->
+
      
-  </body>
           
         
         
- 
- 
-  
-        
-       
-    </div><!--main canvas end loadMap()-->
-     
-       <div style="text-align:center;margin:auto">
+        <div style="text-align:center;margin:auto;">
           
+        
       <span > Map Color Filter: </span>
       <br><br>
     <label for="deaths" onclick="sizes('deather')" style="padding-right:1rem">
@@ -1095,15 +1087,27 @@ footer{
      <br>
   <br>
         <br>
-      
+      <b><i>Please wait a few seconds after pressing submit for the map to reload</i></b>
+           <br>
+            <br>
        <span onclick="loadMap()" class="subButton">Submit</span>
           
       </div>
+ 
+  
+        
+       
+    
+     
+       
       
     <!--foot-->
-    
+    </div><!--main canvas end loadMap()-->
+      
+
   
   </body>
+      
 </html>
     
 
