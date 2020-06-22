@@ -5,7 +5,7 @@ Flask==1.1.2
 Frozen-Flask==0.15
 geopandas==0.7.0
 gmaps==0.9.0
-
+gunicorn==20.0.4
 google-auth==1.11.2
 google-auth-oauthlib==0.4.1
 google-pasta==0.1.7
