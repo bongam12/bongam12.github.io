@@ -5,8 +5,7 @@ import gmaps
 
 
 app = Flask(__name__)
-apiKey = 'apiKey'
-GoogleMaps(app, key=apiKey)
+
 def loadData(ls):
     dfList = []
     for x in ls:
@@ -252,5 +251,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run_server()
-# app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
