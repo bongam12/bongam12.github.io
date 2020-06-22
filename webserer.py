@@ -2,8 +2,7 @@ import io
 from flask import Flask, render_template
 import pandas as pd
 import gmaps
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
+
 
 app = Flask(__name__)   
 apiKey = 'apiKey'
