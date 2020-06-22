@@ -150,6 +150,18 @@ nav li{
   border-left:2px solid green;
   background:white;
   overflow-y:scroll;
+    display:block;
+}
+          .mainCanvas2{
+  z-index:1;
+  height:100%;
+  
+  width:calc(100% - 60px);
+  margin-left:60px;
+  border-left:2px solid green;
+  background:white;
+  overflow-y:scroll;
+              display:hidden;
 }
 .Grid{
   position:relative;
@@ -297,6 +309,20 @@ footer{
         padding: 0;
       }
       </style>
+      <script>
+      function changePages(arg){
+          
+          if (arg == 'faq'){
+              
+              document.getElementsByClassName('mainCanvas').innerHTML = '';
+              document.getElementsByClassName('mainCanvas2').display = 'block';
+          }else{
+              document.getElementsByClassName('mainCanvas2').visibility = 'hidden';
+              document.getElementsByClassName('mainCanvas').visibility = 'visible';
+          }
+          
+      }
+      </script>
   </head>
    
   <body onload='loadMap()' id='body'>
@@ -311,19 +337,21 @@ footer{
       </div>
       
       <ul class='navLinks'>
-        <li style='top:20%;left:0;'>
-          <div class='shrinking'>Map</div>
+          <a href="/" style="text-decoration:none;">
+        <li style='top:20%;left:0;' >
+          <div class='shrinking' >Map</div>
           <div class='iconContainer'>
             <i class="material-icons" style='font-size:30px;padding:5px;'>assignment</i>     
           </div>
         </li>
-       
-        <li style='top:40%;left:0;'>
-          <div class='shrinking'>FAQ</div>
+          </a>
+       <a href="/faq" style="text-decoration:none;"><li style='top:40%;left:0;' >
+          <div class='shrinking' >FAQ</div>
           <div class='iconContainer'>
             <i class="material-icons" style='font-size:30px;padding:5px;'>settings</i>     
           </div>
-        </li>
+        </li></a>
+        
       </ul>
     </nav>
    
@@ -1103,7 +1131,10 @@ footer{
       
     <!--foot-->
     </div><!--main canvas end loadMap()-->
-      
+      <div class='mainCanvas2'>
+          FAQ
+          
+      </div>
 
   
   </body>

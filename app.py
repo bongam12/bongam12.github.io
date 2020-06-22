@@ -248,7 +248,9 @@ def home():
 
     return render_template('index.html', stateArr = stateArr,length = len(stateArr), colors = colors,sizes = sizes,sizesH = sizesH,sizesT = sizesT,sizesA = sizesA,sizesD = sizesD,sizesC = sizesC,sizesNA = sizesNA,colorsD = colorsD)
 
-
+@app.route('/faq')
+def stanford_page():
+    return render_template('index2.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
