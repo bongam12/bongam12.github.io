@@ -461,6 +461,7 @@ footer{
               
           
           if(month == 'april'){
+              document.getElementById('currentMonth').innerHTML = 'April';
               {%for i in range(0, lengthA)%} 
               
               
@@ -523,6 +524,7 @@ footer{
         
           {%endfor%} 
           }else if(month == 'may'){
+              document.getElementById('currentMonth').innerHTML = 'May';
               {%for i in range(0, lengthM)%} 
               
               lat = {{ stateArrM[i]['lat'] }};
@@ -587,6 +589,7 @@ footer{
               {%endfor%}   
           }
         else if(month == 'june2'){
+            document.getElementById('currentMonth').innerHTML = 'June';
               {%for i in range(0, lengthJ2)%} 
               
               lat = {{ stateArrJ2[i]['lat'] }};
@@ -1328,9 +1331,18 @@ footer{
      
           
         
-        
         <div style="text-align:center;margin:auto;">
+            <span style="float:left;text-align:left">
+         Current Month:
+        <span id="currentMonth">
             
+        </span>
+            </span>
+           <br>
+           
+            <b><i>Click on any data point to view more county relevant information</i></b>
+            <br>
+            <br>
             
            <span > Month Filter: </span>
       <br><br>
@@ -1362,7 +1374,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
               
-              background-color:rgba(155,212,228, 0.7);
+              background-color:rgba(155,212,228);
               
           } 
                 #noChange{
@@ -1374,7 +1386,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
               
-              background-color:rgba(171,243,0, 0.7);
+              background-color:rgba(171,243,0);
               
           } 
                 #thirtyI{
@@ -1386,7 +1398,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
               
-              background-color:rgba(252,255,0, 0.9);
+              background-color:rgba(252,255,0);
               
           } 
                 #sixtyI{
@@ -1398,7 +1410,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
               
-              background-color:rgba(255,189,0, 0.7);
+              background-color:rgba(255,189,0);
               
           } 
                 #ninetyI{
@@ -1410,7 +1422,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
              
-              background-color:rgba(255,119,0, 0.7);
+              background-color:rgba(255,119,0);
               
           } 
                 #hundoI{
@@ -1422,7 +1434,7 @@ footer{
               padding-bottom:.25rem;
               cursor:pointer;
               
-              background-color:rgba(73,0,0, 0.8);
+              background-color:rgba(73,0,0);
               
           } 
                 /* tool tip css */
@@ -1479,9 +1491,7 @@ footer{
             <div class="tooltip" id='sixtyI'>
   <span class="tooltiptext">change increase between 33% and 66%</span>
 </div>
-            <div class="tooltip" id='sixtyI'>
-  <span class="tooltiptext">change increase between 33% and 66%</span>
-</div>
+        
             <div class="tooltip" id='ninetyI'>
   <span class="tooltiptext">change increase between 66% and 99%</span>
 </div>
