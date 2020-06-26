@@ -333,7 +333,7 @@ footer{
         <div>
           <i class="material-icons" id="profilePic" style=''>account_circle</i>     
         </div>
-        <p style='border:0px solid red;padding:0;margin-top:-2px;'>Northwestern</p>
+        <p style='border:0px solid red;padding:0;margin-top:-2px;'></p>
       </div>
       
       <ul class='navLinks'>
@@ -420,9 +420,22 @@ footer{
               
               var radiosS = document.getElementsByName('size');
              var radiosC = document.getElementsByName('colors');
-
+              var radiosM = document.getElementsByName('months');
+              
+        
             sizesArg = 'black';
             colorArg = 'cases';
+              month = 'april';
+              for (var x = 0, length3 = radiosM.length; x < length3; x++) {
+                if (radiosM[x].checked) {
+
+                month = radiosM[x].value;
+
+
+
+              }
+            }  
+              
               for (var x = 0, length2 = radiosS.length; x < length2; x++) {
                 if (radiosS[x].checked) {
 
@@ -445,30 +458,35 @@ footer{
              
 //             colorArg = document.getElementById("btn1").value;
 //             sizesArg = document.getElementById("btn2").value;
-          {%for i in range(0, length)%} 
-        lat = {{ stateArr[i]['lat'] }};
-        lng = {{ stateArr[i]['long'] }};
+              
+          
+          if(month == 'april'){
+              {%for i in range(0, lengthA)%} 
+              
+              
+              lat = {{ stateArrA[i]['lat'] }};
+        lng = {{ stateArrA[i]['long'] }};
         if(colorArg == 'cases'){
-            color = '{{ colors[i] }}';
+            color = '{{ colorsA[i] }}';
         }else{
-            color = '{{ colorsD[i] }}';
+            color = '{{ colorsDA[i] }}';
         }
         
         loc = {lat: lat, lng: lng}  
         if(sizesArg == 'black'){
-            size = {{sizes[i]}};
-        }else if(sizesArg =='hispanic'){
-            size = {{sizesH[i]}};
-        }else if(sizesArg =='asian'){
             size = {{sizesA[i]}};
+        }else if(sizesArg =='hispanic'){
+            size = {{sizesHA[i]}};
+        }else if(sizesArg =='asian'){
+            size = {{sizesAA[i]}};
         }else if(sizesArg =='nativeAmerican'){
-            size = {{sizesNA[i]}};
+            size = {{sizesNAA[i]}};
         }else if(sizesArg =='deaths2'){
-            size = {{sizesD[i]}};
+            size = {{sizesDA[i]}};
         }else if(sizesArg =='cases2'){
-            size = {{sizesC[i]}};
+            size = {{sizesCA[i]}};
         }else if(sizesArg =='time'){
-            size = {{sizesT[i]}};
+            size = {{sizesTA[i]}};
         }
         
         
@@ -492,9 +510,8 @@ footer{
           icon: Star,
           map: map
         });
-//          name = {{ stateArr[i]['name'] }}
-//          cases = {{ stateArr[i]['confirmed_cases'] }}
-         contentString = "<dl><dt>Name</dt><dd>{{stateArr[i]['name']}}</dd><dt>Number of Confirmed Cases</dt><dd>{{stateArr[i]['confirmed_cases']}}</dd><br><dt>Number of Confirmed Deaths</dt><dd>{{stateArr[i]['confirmed_deaths']}}</dd> <br><dt>Avg time spent at home</dt><dd>{{stateArr[i]['Avg Time spent home']}} hours</dd><br> <dt>Avg distance traveled from home</dt><dd>{{stateArr[i]['distance_traveled_from_home']}}</dd> <br><dt>Hispanic population</dt><dd>{{stateArr[i]['hispanicPop%']}}</dd> <br><dt>Black or African American population</dt><dd>{{stateArr[i]['blackPop%']}}</dd><br><dt>Asian  population</dt><dd>{{stateArr[i]['asianPop%']}}</dd> <br><dt>Native American population</dt><dd>{{stateArr[i]['NativeAmericanPop%']}}</dd> <br> <dt>% increase in cases</dt><dd>{{stateArr[i]['% change in cases']}}%</dd></dl>" ;
+
+         contentString = "<dl><dt>Name</dt><dd>{{stateArrA[i]['name']}}</dd><dt>Number of Confirmed Cases</dt><dd>{{stateArrA[i]['confirmed_cases']}}</dd><br><dt>Number of Confirmed Deaths</dt><dd>{{stateArrA[i]['confirmed_deaths']}}</dd> <br><dt>Avg time spent at home</dt><dd>{{stateArrA[i]['Avg Time spent home']}} hours</dd><br> <dt>Avg distance traveled from home</dt><dd>{{stateArrA[i]['distance_traveled_from_home']}}</dd> <br><dt>Hispanic population</dt><dd>{{stateArrA[i]['hispanicPop%']}}</dd> <br><dt>Black or African American population</dt><dd>{{stateArrA[i]['blackPop%']}}</dd><br><dt>Asian  population</dt><dd>{{stateArrA[i]['asianPop%']}}</dd> <br><dt>Native American population</dt><dd>{{stateArrA[i]['NativeAmericanPop%']}}</dd> <br> <dt>% increase in cases</dt><dd>{{stateArrA[i]['% change in cases']}}%</dd></dl>" ;
 
        infowindow = new google.maps.InfoWindow()
       google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){ 
@@ -503,6 +520,135 @@ footer{
         infowindow.open(map,marker);
     };
 })(marker,contentString,infowindow));  
+        
+          {%endfor%} 
+          }else if(month == 'may'){
+              {%for i in range(0, lengthM)%} 
+              
+              lat = {{ stateArrM[i]['lat'] }};
+        lng = {{ stateArrM[i]['long'] }};
+        if(colorArg == 'cases'){
+            color = '{{ colorsM[i] }}';
+        }else{
+            color = '{{ colorsDM[i] }}';
+        }
+        
+        loc = {lat: lat, lng: lng}  
+        if(sizesArg == 'black'){
+            size = {{sizesM[i]}};
+        }else if(sizesArg =='hispanic'){
+            size = {{sizesHM[i]}};
+        }else if(sizesArg =='asian'){
+            size = {{sizesAM[i]}};
+        }else if(sizesArg =='nativeAmerican'){
+            size = {{sizesNAM[i]}};
+        }else if(sizesArg =='deaths2'){
+            size = {{sizesDM[i]}};
+        }else if(sizesArg =='cases2'){
+            size = {{sizesCM[i]}};
+        }else if(sizesArg =='time'){
+            size = {{sizesTM[i]}};
+        }
+        
+        
+ 
+        var Star = {
+          path: google.maps.SymbolPath.CIRCLE,
+//           fillColor: color ,
+         
+//           scale: size,
+//           strokeColor:color,
+//           strokeWeight: 2,
+            fillColor: color,
+          fillOpacity: 0.8,
+          scale: size,
+          strokeColor: color,
+          strokeWeight: size
+        };
+
+        var marker = new google.maps.Marker({
+          position: loc,
+          icon: Star,
+          map: map
+        });
+
+         contentString = "<dl><dt>Name</dt><dd>{{stateArrM[i]['name']}}</dd><dt>Number of Confirmed Cases</dt><dd>{{stateArrM[i]['confirmed_cases']}}</dd><br><dt>Number of Confirmed Deaths</dt><dd>{{stateArrM[i]['confirmed_deaths']}}</dd> <br><dt>Avg time spent at home</dt><dd>{{stateArrM[i]['Avg Time spent home']}} hours</dd><br> <dt>Avg distance traveled from home</dt><dd>{{stateArrM[i]['distance_traveled_from_home']}}</dd> <br><dt>Hispanic population</dt><dd>{{stateArrM[i]['hispanicPop%']}}</dd> <br><dt>Black or African American population</dt><dd>{{stateArrM[i]['blackPop%']}}</dd><br><dt>Asian  population</dt><dd>{{stateArrM[i]['asianPop%']}}</dd> <br><dt>Native American population</dt><dd>{{stateArrM[i]['NativeAmericanPop%']}}</dd> <br> <dt>% increase in cases</dt><dd>{{stateArrM[i]['% change in cases']}}%</dd></dl>" ;
+
+       infowindow = new google.maps.InfoWindow()
+      google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){ 
+    return function() {
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
+    };
+})(marker,contentString,infowindow));  
+              
+              
+              {%endfor%}   
+          }
+        else if(month == 'june2'){
+              {%for i in range(0, lengthJ2)%} 
+              
+              lat = {{ stateArrJ2[i]['lat'] }};
+        lng = {{ stateArrJ2[i]['long'] }};
+        if(colorArg == 'cases'){
+            color = '{{ colorsJ2[i] }}';
+        }else{
+            color = '{{ colorsDJ2[i] }}';
+        }
+        
+        loc = {lat: lat, lng: lng}  
+        if(sizesArg == 'black'){
+            size = {{sizesJ2[i]}};
+        }else if(sizesArg =='hispanic'){
+            size = {{sizesHJ2[i]}};
+        }else if(sizesArg =='asian'){
+            size = {{sizesAJ2[i]}};
+        }else if(sizesArg =='nativeAmerican'){
+            size = {{sizesNAJ2[i]}};
+        }else if(sizesArg =='deaths2'){
+            size = {{sizesDJ2[i]}};
+        }else if(sizesArg =='cases2'){
+            size = {{sizesCJ2[i]}};
+        }else if(sizesArg =='time'){
+            size = {{sizesTJ2[i]}};
+        }
+        
+        
+ 
+        var Star = {
+          path: google.maps.SymbolPath.CIRCLE,
+//           fillColor: color ,
+         
+//           scale: size,
+//           strokeColor:color,
+//           strokeWeight: 2,
+            fillColor: color,
+          fillOpacity: 0.8,
+          scale: size,
+          strokeColor: color,
+          strokeWeight: size
+        };
+
+        var marker = new google.maps.Marker({
+          position: loc,
+          icon: Star,
+          map: map
+        });
+
+         contentString = "<dl><dt>Name</dt><dd>{{stateArrJ2[i]['name']}}</dd><dt>Number of Confirmed Cases</dt><dd>{{stateArrJ2[i]['confirmed_cases']}}</dd><br><dt>Number of Confirmed Deaths</dt><dd>{{stateArrJ2[i]['confirmed_deaths']}}</dd> <br><dt>Avg time spent at home</dt><dd>{{stateArrJ2[i]['Avg Time spent home']}} hours</dd><br> <dt>Avg distance traveled from home</dt><dd>{{stateArrJ2[i]['distance_traveled_from_home']}}</dd> <br><dt>Hispanic population</dt><dd>{{stateArrJ2[i]['hispanicPop%']}}</dd> <br><dt>Black or African American population</dt><dd>{{stateArrJ2[i]['blackPop%']}}</dd><br><dt>Asian  population</dt><dd>{{stateArrJ2[i]['asianPop%']}}</dd> <br><dt>Native American population</dt><dd>{{stateArrJ2[i]['NativeAmericanPop%']}}</dd> <br> <dt>% increase in cases</dt><dd>{{stateArrJ2[i]['% change in cases']}}%</dd></dl>" ;
+
+       infowindow = new google.maps.InfoWindow()
+      google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){ 
+    return function() {
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
+    };
+})(marker,contentString,infowindow));  
+              
+              
+              {%endfor%}   
+          }
+        
         
 //       marker.addListener('click', function() {
 //     infowindow.open(map, marker);
@@ -514,7 +660,7 @@ footer{
         
         
         
-        {%endfor%} 
+      
      document.getElementById("loader").style.display = 'none';
          document.getElementById("map").style.display = "block";
           }
@@ -676,6 +822,81 @@ footer{
               border-color:rgb(188,129,172);
           }
           
+          #may1{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #may1:hover{
+              background-color:rgb(219,169,0,.8);
+             
+              color:white;
+              border-color:rgb(174,158,59);
+          }
+          
+          
+          
+          #april1{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #april1:hover{
+              background-color:rgb(253,137,221,.8);
+              color:white;
+              border-color:rgb(191,104,246);
+          }
+          
+          #june1-1{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #june1-1:hover{
+              background-color:rgb(76,180,43,.8);
+              color:white;
+              border-color:rgb(50,154,73);
+          }
+          
+          #june1-2{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              transition:  color 2s;
+              transition: background-color 2s;
+              transition: border 1.5s;
+          }
+          #june1-2:hover{
+              background-color:rgb(215,232,244,.8);
+              color:white;
+              border-color:rgb(134,201,251);
+          }
+          
           
           
           #timer{
@@ -720,6 +941,62 @@ footer{
           function sizes(arg){
               //switch logic for colors
              switch (arg) {
+                          case 'april1':
+                              document.getElementById('april1').style.backgroundColor = 'rgb(253,137,221,.8)';
+                              document.getElementById('april1').style.color = 'white';
+                              document.getElementById('april1').style.borderColor = 'rgb(191,104,246)';
+                              document.getElementById('may1').style.backgroundColor = 'white';
+                              document.getElementById('may1').style.color = 'black';
+                              document.getElementById('may1').style.borderColor = 'black';
+                              document.getElementById('june1-1').style.backgroundColor = 'white';
+                              document.getElementById('june1-1').style.color = 'black';
+                              document.getElementById('june1-1').style.borderColor = 'black';
+                              document.getElementById('june1-2').style.backgroundColor = 'white';
+                              document.getElementById('june1-2').style.color = 'black';
+                              document.getElementById('june1-2').style.borderColor = 'black';
+                            break;
+                          case 'may1':
+                              document.getElementById('april1').style.backgroundColor = 'white';
+                              document.getElementById('april1').style.color = 'black';
+                              document.getElementById('april1').style.borderColor = 'black';
+                              document.getElementById('may1').style.backgroundColor = 'rgb(219,169,0,.8)';
+                              document.getElementById('may1').style.color = 'white';
+                              document.getElementById('may1').style.borderColor = 'rgb(174,158,59)';
+                              document.getElementById('june1-1').style.backgroundColor = 'white';
+                              document.getElementById('june1-1').style.color = 'black';
+                              document.getElementById('june1-1').style.borderColor = 'black';
+                              document.getElementById('june1-2').style.backgroundColor = 'white';
+                              document.getElementById('june1-2').style.color = 'black';
+                              document.getElementById('june1-2').style.borderColor = 'black';
+                            break;
+                         case 'june1-1':
+                              document.getElementById('april1').style.backgroundColor = 'white';
+                              document.getElementById('april1').style.color = 'black';
+                              document.getElementById('april1').style.borderColor = 'black';
+                              document.getElementById('may1').style.backgroundColor = 'white';
+                              document.getElementById('may1').style.color = 'black';
+                              document.getElementById('may1').style.borderColor = 'black';
+                              document.getElementById('june1-1').style.backgroundColor = 'rgb(76,180,43,.8)';
+                              document.getElementById('june1-1').style.color = 'black';
+                              document.getElementById('june1-1').style.borderColor = 'rgb(50,154,73)';
+                              document.getElementById('june1-2').style.backgroundColor = 'white)';
+                              document.getElementById('june1-2').style.color = 'black';
+                              document.getElementById('june1-2').style.borderColor = 'black';
+                            break;
+                          case 'june1-2':
+                              document.getElementById('april1').style.backgroundColor = 'white';
+                              document.getElementById('april1').style.color = 'black';
+                              document.getElementById('april1').style.borderColor = 'black';
+                              document.getElementById('may1').style.backgroundColor = 'white';
+                              document.getElementById('may1').style.color = 'black';
+                              document.getElementById('may1').style.borderColor = 'black';
+                              document.getElementById('june1-1').style.backgroundColor = 'white';
+                              document.getElementById('june1-1').style.color = 'black';
+                              document.getElementById('june1-1').style.borderColor = 'black';
+                              document.getElementById('june1-2').style.backgroundColor = 'rgb(215,232,244,.8)';
+                              document.getElementById('june1-2').style.color = 'black';
+                              document.getElementById('june1-2').style.borderColor = 'rgb(134,201,251)';
+                            break;
                           case 'deather':
                               document.getElementById('deather').style.backgroundColor = 'rgb(253,51,0,.8)';
                               document.getElementById('deather').style.color = 'white';
@@ -1052,10 +1329,167 @@ footer{
         
         
         <div style="text-align:center;margin:auto;">
-          
-        
-      <span > Map Color Filter: </span>
+            
+            
+           <span > Month Filter: </span>
       <br><br>
+    <label for="april" onclick="sizes('april1')" style="padding-right:1rem">
+         <input type="radio" id='april'  name="months" value="april" hidden>
+              <span id='april1'   >April</span>
+        </label>   
+     
+        <label for="may"  onclick="sizes('may1')" style="padding-right:1rem">
+  <input type="radio"  id="may" name="months" value="may" hidden>
+       <span id='may1'   > May </span>
+        </label> 
+            
+            
+            <label for="june2"  onclick="sizes('june1-1')">
+  <input type="radio"  id="june2" name="months" value="june2" hidden>
+       <span id='june1-1'   > June - 2.5 Weeks </span>
+        </label> 
+     
+     <br>
+  <br>
+          <style>
+               #negative{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(155,212,228, 0.7);
+              
+          } 
+                #noChange{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(171,243,0, 0.7);
+              
+          } 
+                #thirtyI{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(252,255,0, 0.9);
+              
+          } 
+                #sixtyI{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(255,189,0, 0.7);
+              
+          } 
+                #ninetyI{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(255,119,0, 0.8);
+              
+          } 
+                #hundoI{
+              border:1px solid black;
+              border-radius:15px;
+              padding-left:.5rem;
+              padding-right:.5rem;
+              padding-top:.25rem;
+              padding-bottom:.25rem;
+              cursor:pointer;
+              
+              background-color:rgba(73,0,0, 0.8);
+              
+          } 
+                /* tool tip css */
+                
+                .tooltip {
+                  position: relative;
+                  display: inline-block;
+                  border-bottom: 1px dotted black;
+                }
+
+                .tooltip .tooltiptext {
+                  visibility: hidden;
+                  width: 120px;
+                  background-color: black;
+                  color: #fff;
+                  text-align: center;
+                  border-radius: 6px;
+                  padding: 5px 0;
+                  position: absolute;
+                  z-index: 1;
+                  bottom: 150%;
+                  left: 50%;
+                  margin-left: -60px;
+                }
+
+                .tooltip .tooltiptext::after {
+                  content: "";
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  margin-left: -5px;
+                  border-width: 5px;
+                  border-style: solid;
+                  border-color: black transparent transparent transparent;
+                }
+
+                .tooltip:hover .tooltiptext {
+                  visibility: visible;
+                }
+                
+                /* end tool tip css */
+            </style>
+
+            Map Color legend:<br>
+            <div class="tooltip" id='negative'>
+  <span class="tooltiptext">negative change</span>
+</div>
+            <div class="tooltip" id='noChange'>
+  <span class="tooltiptext">no change</span>
+</div>
+            <div class="tooltip" id='thirtyI'>
+  <span class="tooltiptext">change increase between 0 and 33%</span>
+</div>
+            <div class="tooltip" id='sixtyI'>
+  <span class="tooltiptext">change increase between 33% and 66%</span>
+</div>
+            <div class="tooltip" id='sixtyI'>
+  <span class="tooltiptext">change increase between 33% and 66%</span>
+</div>
+            <div class="tooltip" id='ninetyI'>
+  <span class="tooltiptext">change increase between 66% and 99%</span>
+</div>
+            <div class="tooltip" id='hundoI'>
+  <span class="tooltiptext">change greater than 99%</span>
+</div>
+           <br><br>
+      <span > Map Color Filter: </span>
+          <br><br>
     <label for="deaths" onclick="sizes('deather')" style="padding-right:1rem">
          <input type="radio" id='deaths'  name="colors" value="deaths" hidden>
               <span id='deather'   >% change in Deaths</span>
