@@ -35,7 +35,7 @@ def createGeoSpatial(ls):
         for index, row in x.iterrows():
 
             #print(row['countyName'], row['Lat'], row['Long_'])
-            stateArr.append({'HawaiianPop%':(row['NA_MALE']+row['NA_FEMALE'])/row['TOT_POP'] *100,'NativeAmericanPop%':(row['IA_MALE']+row['IA_FEMALE'])/row['TOT_POP']*100,'asianPop%':(row['AA_MALE']+row['AA_FEMALE'])/row['TOT_POP']*100,'hispanicPop%':(row['H_MALE']+row['H_FEMALE'])/row['TOT_POP']*100,'whitePop%':(row['WA_MALE']+row['WA_FEMALE'])/row['TOT_POP']*100,'blackPop%':(row['BA_MALE']+row['BA_FEMALE'])/row['TOT_POP']*100,'% change in deaths': row['% change in deaths'],'Current Deaths':row['Current_Deaths'],'name': row['countyName'], 'location': (row['Lat'], row['Long_']),'lat': row['Lat'],'long':  row['Long_'],'% change in cases':(round(row['% change in cases'],2) * 100),'Qty change in cases':int(round(row['change in cases'])), 'confirmed_cases': int(round(row['Current_Confirmed'])), 'confirmed_deaths': int(round(row['Deaths'])),'distance_traveled_from_home':int(round(row['distance_traveled_from_home'])),'Black or African American alone male population':int(round(row['BA_MALE'])),'White alone male population':int(round(row['WA_MALE'])),'Avg Time spent home':round(int(round(row['median_home_dwell_time']))/60)})
+            stateArr.append({'HawaiianPop%':round((row['NA_MALE']+row['NA_FEMALE'])/row['TOT_POP'] *100,2),'NativeAmericanPop%':round((row['IA_MALE']+row['IA_FEMALE'])/row['TOT_POP']*100,2),'asianPop%':round((row['AA_MALE']+row['AA_FEMALE'])/row['TOT_POP']*100,2),'hispanicPop%':round((row['H_MALE']+row['H_FEMALE'])/row['TOT_POP']*100,2),'whitePop%':(row['WA_MALE']+row['WA_FEMALE'])/row['TOT_POP']*100,'blackPop%':round((row['BA_MALE']+row['BA_FEMALE'])/row['TOT_POP']*100,2),'% change in deaths': row['% change in deaths'],'Current Deaths':row['Current_Deaths'],'name': row['countyName'], 'location': (row['Lat'], row['Long_']),'lat': row['Lat'],'long':  row['Long_'],'% change in cases':(round(row['% change in cases'],2) * 100),'Qty change in cases':int(round(row['change in cases'])), 'confirmed_cases': int(round(row['Current_Confirmed'])), 'confirmed_deaths': int(round(row['Deaths'])),'distance_traveled_from_home':int(round(row['distance_traveled_from_home'])),'Black or African American alone male population':int(round(row['BA_MALE'])),'White alone male population':int(round(row['WA_MALE'])),'Avg Time spent home':round(int(round(row['median_home_dwell_time']))/60)})
     return stateArr
 
 
@@ -123,12 +123,12 @@ def createMap(states,originCoord,colors,arg):
                 marker_layer.markers[count].scale = int(x[arg] / 10)
         elif arg == 'Avg Time spent home':
             if int(x[arg]) > 10:
-                marker_layer.markers[count].scale = 2
+                marker_layer.markers[count].scale = 1
             elif int(x[arg]) < 10 and int(x[arg]) > 6:
-                #over 500 deaths
-                marker_layer.markers[count].scale = 4
+             
+                marker_layer.markers[count].scale = 6/int(x[arg]) + .4
             else:
-                marker_layer.markers[count].scale = 6
+                marker_layer.markers[count].scale = 6/int(x[arg]) + .4
         else:
             if int(x[arg] * .0007) == 0:
                 marker_layer.markers[count].scale = 2
@@ -256,7 +256,7 @@ def home():
     
     stateArr = cache.get('stateArr')
     sizes = cache.get('sizes')
-    sizesT =cache.get('sizesT')
+    sizesT = cache.get('sizesT')
     sizesA = cache.get('sizesA')
     sizesH = cache.get('sizesH')
     sizesNA = cache.get('sizesNA')
